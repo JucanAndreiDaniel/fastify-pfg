@@ -1,8 +1,30 @@
 'use strict'
 
 // In-memory database
-let products = [];
-let nextProductId = 1;
+let products = [
+    {
+        id: 1,
+        name: 'Product 1',
+        description: 'Description for product 1',
+        price: 100,
+        availability: 10,
+    },
+    {
+        id: 2,
+        name: 'Product 2',
+        description: 'Description for product 2',
+        price: 200,
+        availability: 20,
+    },
+    {
+        id: 3,
+        name: 'Product 3',
+        description: 'Description for product 3',
+        price: 300,
+        availability: 30,
+    }
+];
+let nextProductId = 4;
 
 // Utility function to find product by ID
 const findProductIndex = (id) => products.findIndex((product) => product.id == id);
