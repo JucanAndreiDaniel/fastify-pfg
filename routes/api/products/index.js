@@ -5,7 +5,7 @@ let products = [];
 let nextProductId = 1;
 
 // Utility function to find product by ID
-const findProductIndex = (id) => products.findIndex((product) => product.id === id);
+const findProductIndex = (id) => products.findIndex((product) => product.id == id);
 
 module.exports = async function (fastify, opts) {
     // Retrieve a list of products
@@ -19,9 +19,6 @@ module.exports = async function (fastify, opts) {
         const product = {
             id: nextProductId++,
             name,
-            description,
-            price,
-            availability
         };
         products.push(product);
         return product;
