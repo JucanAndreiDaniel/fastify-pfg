@@ -55,6 +55,9 @@ module.exports = async function (fastify, opts) {
         const product = {
             id: nextProductId++,
             name,
+            description,
+            price,
+            availability
         };
         products.push(product);
         return product;
@@ -90,7 +93,7 @@ module.exports = async function (fastify, opts) {
             reply.code(404).send({ message: 'Product not found' });
             return;
         }
-        products = products.filter((product) => product.id !== id);
+        products = products.filter((product) => product.id != id);
         return { message: 'Product deleted' };
     });
 }
