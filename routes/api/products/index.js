@@ -30,6 +30,20 @@ let nextProductId = 4;
 const findProductIndex = (id) => products.findIndex((product) => product.id == id);
 
 module.exports = async function (fastify, opts) {
+
+    fastify.addHook('preHandler', async (request, reply) => {
+        const { authorization } = request.headers;
+        if (!authorization) {
+            reply.code(401).send({ message: 'Unauthorized' });
+            return;
+        }
+        try {
+            await request.jwtVerify();
+        } catch (err) {
+            reply.code(401).send({ message: 'Unauthorized' });
+        }
+    })
+
     // Retrieve a list of products
     fastify.get('/', async function (request, reply) {
         return products;
